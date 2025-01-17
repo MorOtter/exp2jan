@@ -1,4 +1,5 @@
 const configureConditions = (participantId) => {
+  // set up experiment parameters
   const conditionNumber = participantId % 3;
   const groupNumber = parseInt(participantId) % 2;
   const censorGroupNumber = Math.floor(participantId / 4) % 2;
@@ -57,6 +58,7 @@ exports.setUpParticipant = async (req, res) => {
     age
   );
 
+  // res.redirect("/information/description");
   res.redirect("/information/instructions");
 };
 
@@ -65,11 +67,12 @@ exports.addFeedback = async (req, res) => {
 
   await req.dbServices.insertFeedback(req.session.participantId, feedback);
 
-  res.redirect("/information/debrief");
+  // res.redirect("/information/debrief");
 };
 
 exports.addAccuracy = async (req, res) => {
   const accuracy = req.body["accuracy"];
   await req.dbServices.insertPercent(req.session.participantId, accuracy);
-  res.redirect("/information/thanks");
+  // res.redirect("/information/thanks");
+  res.redirect("/information/debrief");
 };

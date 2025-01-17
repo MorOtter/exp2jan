@@ -23,6 +23,7 @@ router.get("/feedback", (req, res) => {
 
 router.post("/feedback", async (req, res) => {
   addFeedback(req, res);
+  addAccuracy(req, res);
 });
 
 router.post("/accuracy", async (req, res) => {

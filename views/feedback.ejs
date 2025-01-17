@@ -35,6 +35,7 @@
       <h1>Feedback</h1>
       <form
         class="d-flex flex-column"
+        id="feedbackForm"
         action="/participant/feedback"
         method="POST"
       >
@@ -44,9 +45,48 @@
         >
         <br />
         <br />
-        <textarea name="feedback" rows="15"></textarea>
-        <button type="submit">Submit</button>
+        <textarea id="feedback" name="feedback" rows="15"></textarea>
+
+        <div class="mb-3">
+          <label for="accuracy" class="form-label"
+            >What percentage of correctness do you think you achieved?</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="accuracy"
+            name="accuracy"
+            placeholder="Enter percentage (0-100)"
+            min="1"
+            max="100"
+            required
+          />
+        </div>
       </form>
+      <button class="btn btn-primary" id="submitFeedbackButton">Submit</button>
     </section>
   </body>
+
+  <script>
+    document
+      .getElementById("submitFeedbackButton")
+      .addEventListener("click", (event) => {
+        const accuracy = document.getElementById("accuracy").value;
+        if (accuracy < 1 || accuracy > 100) {
+          alert("Please enter a percentage between 1 and 100.");
+          event.preventDefault();
+        }
+
+        const feedback = document.getElementById("feedback").value;
+        if (!feedback) {
+          // Check if feedback is empty
+          alert("Please enter your feedback.");
+          event.preventDefault();
+        }
+
+        // If validation passes, submit the form and route to the next page
+        const form = document.getElementById("feedbackForm");
+        form.submit();
+      });
+  </script>
 </html>
