@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "nodemon server.js --ignore log.json",
     "start": "node server.js",
-    "test": "jest"
+    "test": "jest",
+    "build": "echo 'No build step needed for this project'",
+    "heroku-postbuild": "echo 'No additional post-build steps required'"
   },
   "dependencies": {
     "@google-cloud/storage": "^5.7.0",
