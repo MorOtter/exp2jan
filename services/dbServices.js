@@ -21,7 +21,9 @@ const getLastTrialId = async () => {
 };
 
 const pool = new Pool({
-  connectionString: process.env.SUPABASE_DB_URL,
+  // connectionString: process.env.SUPABASE_DB_URL,
+  connectionString:
+    "postgresql://postgres.qxsjjkughdhjwgptbcih:Scss_Exp2_2025!@aws-0-eu-west-2.pooler.supabase.com:5432/postgres",
   ssl: {
     rejectUnauthorized: false,
   },
