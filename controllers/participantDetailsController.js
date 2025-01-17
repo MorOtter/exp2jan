@@ -1,5 +1,4 @@
 const configureConditions = (participantId) => {
-  // set up experiment parameters
   const conditionNumber = participantId % 3;
   const groupNumber = parseInt(participantId) % 2;
   const censorGroupNumber = Math.floor(participantId / 4) % 2;
@@ -58,7 +57,6 @@ exports.setUpParticipant = async (req, res) => {
     age
   );
 
-  // res.redirect("/information/description");
   res.redirect("/information/instructions");
 };
 
