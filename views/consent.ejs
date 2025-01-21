@@ -1,15 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- ... head section remains the same ... -->
+  <head>
+    <meta charset="utf-8" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/public/css/style.css" rel="stylesheet" />
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Favicon -->
+    <link rel="icon" href="/public/assets/favicon.webp" type="image/x-icon" />
+    <!-- Page Title -->
+    <title>Security Control Simulation System</title>
+  </head>
   <body>
-    <!-- ... navigation remains the same ... -->
+    <!-- Navigation Bar -->
+    <nav class="custom-navbar">
+      <div class="navbar-logo">
+        <a>SCSS</a>
+      </div>
+    </nav>
 
     <section class="info">
       <h1>Consent Form</h1>
       <h2><b>Name of Lead Investigator:</b> Mordecai Otter</h2>
       <br />
-      <!-- ... other intro paragraphs remain the same ... -->
+      <p>
+        I confirm that I have read the information sheet and understand that my
+        participation in this project will require approximately one hour of my
+        time for which I will be awarded 5 EMS course credits for taking part.
+      </p>
+      <p>
+        I understand that participation will involve completing a cybersecurity
+        data classification task and filling out a questionnaire.
+      </p>
+      <p>
+        I understand that participation in this study is entirely voluntary and
+        that I can withdraw from the study at any time without giving a reason,
+        without any adverse consequences, and without loss of course credit, up
+        to the point of data anonymisation.
+      </p>
+      <p>
+        I understand that the information provided by me will be held
+        anonymously, so it is not possible to trace this information back to me
+        individually, who will have access to the information provided, how the
+        data will be stored and what will happen to the data at the end of the
+        research project. I understand that this information may be retained
+        indefinitely, and the results of this research project will be written
+        up and maybe published.
+      </p>
+      <p>
+        I also understand that at the end of the study, I will be provided with
+        additional information and feedback about the purpose of the study.
+      </p>
+      <p>
+        I understand that I am free to ask any questions at any time. I am free
+        to withdraw or discuss my concerns with the project supervisor:
+      </p>
+      <p>
+        Prof. Phillip Morgan:
+        <a href="mailto:morganphil@cardiff.ac.uk">morganphil@cardiff.ac.uk</a>
+      </p>
+      <p>
+        Prof. Rob Honey:
+        <a href="mailto:honey@cardiff.ac.uk">honey@cardiff.ac.uk</a>
+      </p>
+      <p>
+        or the School of Psychology Research Ethics committee:
+        <a href="mailto:psychethics@cardiff.ac.uk">psychethics@cardiff.ac.uk</a>
+      </p>
+      <p>
+        <b>Please tick the required box next to each statement below as an
+          electronic signature confirming your understanding and agreement.</b>
+      </p>
 
+      <!-- Consent form -->
       <section class="consent">
         <div class="d-flex w-100 justify-content-between">
           <input
@@ -178,13 +253,13 @@
     </section>
 
     <script>
-      // Add event listener for each checkbox to remove warning styling when checked
+      // Add event listeners for consent checkboxes
       document.querySelectorAll('.consent-checkbox').forEach(checkbox => {
         checkbox.addEventListener('click', () => {
           if (checkbox.checked) {
-            checkbox.parentElement.classList.remove('border-warning');
+            checkbox.parentElement.classList.remove('border-warning', 'border', 'border-2', 'border-danger');
           } else {
-            checkbox.parentElement.classList.add('border-warning');
+            checkbox.parentElement.classList.add('border-warning', 'border', 'border-2');
           }
         });
       });
@@ -196,16 +271,16 @@
         const consentCheckboxes = document.querySelectorAll('.consent-checkbox');
         consentCheckboxes.forEach(checkbox => {
           if (!checkbox.checked) {
-            checkbox.parentElement.classList.add('border-danger');
+            checkbox.parentElement.classList.add('border', 'border-2', 'border-danger');
             isValid = false;
           } else {
-            checkbox.parentElement.classList.remove('border-danger');
+            checkbox.parentElement.classList.remove('border', 'border-2', 'border-danger');
           }
         });
         
         if (!isValid) {
           event.preventDefault();
-          window.alert("Please check all consent boxes to proceed");
+          window.alert("Please tick all consent statements to confirm your agreement");
           return;
         }
 
