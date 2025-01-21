@@ -31,7 +31,7 @@
       </div>
     </nav>
 
-    <section class="info"></section>
+    <section class="info">
       <h1>Consent Form</h1>
       <h2><b>Name of Lead Investigator:</b> Mordecai Otter</h2>
       <br />
@@ -87,29 +87,31 @@
       </p>
 
       <!-- Consent form -->
+
       <section class="consent">
         <div class="d-flex w-100 justify-content-between">
           <input
             type="checkbox"
-            class="form-check-input consent-checkbox"
-            id="consent-1"
+            class="form-check-input"
+            id="consent-checkbox"
             name="consent-checkbox"
           />
-          <label for="consent-1" class="form-check-label">
+          <label for="consent-checkbox" class="form-check-label">
             I consent to participate in the study conducted by Mordecai Otter of
             Psychology, Cardiff University with the supervision of Prof. Phillip
-            Morgan and Prof. Rob Honey.</label>
+            Morgan and Prof. Rob Honey.</label
+          >
         </div>
         <br /><br />
+        <!-- Consent checkboxes for each statement -->
 
         <div class="row align-items-center">
           <div class="col-12 d-flex">
             <input
               type="checkbox"
-              class="form-check-input consent-checkbox me-2"
+              class="form-check-input me-2"
               style="margin-left: -1rem"
-              id="consent-2"
-              name="consent-checkbox"
+              name="consent-statement"
             />
             <p class="mb-0">
               I confirm that I have read the information sheet on the previous
@@ -123,10 +125,9 @@
           <div class="col-12 d-flex">
             <input
               type="checkbox"
-              class="form-check-input consent-checkbox me-2"
+              class="form-check-input me-2"
               style="margin-left: -1rem"
-              id="consent-3"
-              name="consent-checkbox"
+              name="consent-statement"
             />
             <p class="mb-0">
               I confirm that I understand the information sheet and have had the
@@ -140,10 +141,9 @@
           <div class="col-12 d-flex">
             <input
               type="checkbox"
-              class="form-check-input consent-checkbox me-2"
+              class="form-check-input me-2"
               style="margin-left: -1rem"
-              id="consent-4"
-              name="consent-checkbox"
+              name="consent-statement"
             />
             <p class="mb-0">
               I understand that my participation is voluntary, and I am free to
@@ -158,10 +158,9 @@
           <div class="col-12 d-flex">
             <input
               type="checkbox"
-              class="form-check-input consent-checkbox me-2"
+              class="form-check-input me-2"
               style="margin-left: -1rem"
-              id="consent-5"
-              name="consent-checkbox"
+              name="consent-statement"
             />
             <p class="mb-0">
               I consent to the processing of my personal information for the purposes explained to me.
@@ -174,10 +173,9 @@
           <div class="col-12 d-flex">
             <input
               type="checkbox"
-              class="form-check-input consent-checkbox me-2"
+              class="form-check-input me-2"
               style="margin-left: -1rem"
-              id="consent-6"
-              name="consent-checkbox"
+              name="consent-statement"
             />
             <p class="mb-0">
               I understand who will have access to my personal information, how
@@ -192,10 +190,9 @@
           <div class="col-12 d-flex">
             <input
               type="checkbox"
-              class="form-check-input consent-checkbox me-2"
+              class="form-check-input me-2"
               style="margin-left: -1rem"
-              id="consent-7"
-              name="consent-checkbox"
+              name="consent-statement"
             />
             <p class="mb-0">
               I understand that after the research project, anonymised data may
@@ -209,10 +206,24 @@
           <div class="col-12 d-flex">
             <input
               type="checkbox"
-              class="form-check-input consent-checkbox me-2"
+              class="form-check-input me-2"
               style="margin-left: -1rem"
-              id="consent-8"
-              name="consent-checkbox"
+              name="consent-statement"
+            />
+            <p class="mb-0">
+              I understand the to receive my EMS credits I will need to follow the steps laid out in the debrief.
+            </p>
+          </div>
+        </div>
+        <br /><br />
+
+        <div class="row align-items-center">
+          <div class="col-12 d-flex">
+            <input
+              type="checkbox"
+              class="form-check-input me-2"
+              style="margin-left: -1rem"
+              name="consent-statement"
             />
             <p class="mb-0">
               I understand how the findings and results of the research project
@@ -227,7 +238,6 @@
           <div class="mb-3">
             <label for="gender" class="form-label">What is your gender?</label>
             <select class="form-select" id="gender" name="gender" required>
-              <option value="">Please select</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
@@ -242,51 +252,64 @@
               class="form-control"
               id="age"
               name="age"
-              placeholder="Enter age (18-99)"
+              placeholder="Enter age (18-99) or 'Prefer not to say'"
               required
             />
           </div>
         </form>
       </section>
       <p><b>Thank you for participating in our research.</b></p>
-      <p><b>You will receive instructions on how to receive your credits at the top of the debrief page at the end of the study.</b></p>
       <button class="btn" id="proceedToLogin">Confirm</button>
     </section>
+  </body>
 
-    <script>
-      // Add event listeners for consent checkboxes
-      document.querySelectorAll('.consent-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('click', () => {
-          if (checkbox.checked) {
-            checkbox.parentElement.classList.remove('border-warning', 'border', 'border-2', 'border-danger');
-          } else {
-            checkbox.parentElement.classList.add('border-warning', 'border', 'border-2');
-          }
-        });
-      });
+  <script>
+    var mainCheckbox = document.getElementById("consent-checkbox");
+    mainCheckbox.addEventListener("click", () => {
+      mainCheckbox.checked
+        ? mainCheckbox.parentElement.classList.remove("border-warning")
+        : mainCheckbox.parentElement.classList.add("border-warning");
+    });
 
-      document.getElementById("proceedToLogin").addEventListener("click", (event) => {
-        let isValid = true;
-        
-        // Check all consent checkboxes
-        const consentCheckboxes = document.querySelectorAll('.consent-checkbox');
-        consentCheckboxes.forEach(checkbox => {
-          if (!checkbox.checked) {
-            checkbox.parentElement.classList.add('border', 'border-2', 'border-danger');
-            isValid = false;
-          } else {
-            checkbox.parentElement.classList.remove('border', 'border-2', 'border-danger');
-          }
-        });
-        
-        if (!isValid) {
+    document
+      .getElementById("proceedToLogin")
+      .addEventListener("click", (event) => {
+        // Check if the main checkbox is checked
+        if (!document.getElementById("consent-checkbox").checked) {
+          document
+            .getElementById("consent-checkbox")
+            .parentElement.classList.add("border-danger");
           event.preventDefault();
-          window.alert("Please tick all consent statements to confirm your agreement");
+          window.alert(
+            "Please provide an electronic signature by clicking the checkbox"
+          );
           return;
         }
 
+        document
+          .getElementById("consent-checkbox")
+          .parentElement.classList.remove("border-danger");
+
+        // Check if all consent checkboxes are ticked
+        var consentStatements = document.getElementsByName("consent-statement");
+        for (let item of consentStatements) {
+          if (!item.checked) {
+            item.classList.add("border");
+            item.classList.add("border-2");
+            item.classList.add("border-danger");
+            event.preventDefault();
+            window.alert(
+              "Please tick all consent statements to confirm your agreement"
+            );
+            return;
+          }
+          item.classList.remove("border");
+          item.classList.remove("border-2");
+          item.classList.remove("border-danger");
+        }
+
         // Validate gender selection
-        const gender = document.getElementById("gender");
+        var gender = document.getElementById("gender");
         if (gender.value === "") {
           gender.classList.add("border-danger");
           event.preventDefault();
@@ -296,22 +319,30 @@
         gender.classList.remove("border-danger");
 
         // Validate age input
-        const age = document.getElementById("age");
-        const ageValue = age.value.trim();
-        const ageNum = parseInt(ageValue);
-        
-        if (isNaN(ageNum) || ageNum < 18 || ageNum > 99) {
+        var age = document.getElementById("age");
+        var ageValue = age.value.trim();
+        if (ageValue === "") {
           age.classList.add("border-danger");
           event.preventDefault();
-          window.alert("Please enter a valid age between 18 and 99");
+          window.alert("Please enter your age or select 'Prefer not to say'");
           return;
+        }
+        if (ageValue.toLowerCase() !== "prefer not to say") {
+          var ageNum = parseInt(ageValue);
+          if (isNaN(ageNum) || ageNum < 18 || ageNum > 99) {
+            age.classList.add("border-danger");
+            event.preventDefault();
+            window.alert(
+              "Please enter a valid age between 18 and 99, or 'Prefer not to say'"
+            );
+            return;
+          }
         }
         age.classList.remove("border-danger");
 
-        // If all validation passes, submit the form
+        // If validation passes, submit the form and route to the next page
         const form = document.getElementById("consent-form");
         form.submit();
       });
-    </script>
-  </body>
+  </script>
 </html>
